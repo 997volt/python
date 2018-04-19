@@ -21,6 +21,7 @@ class ElectricCar(Car):
   def drive_car(self):
     self.condition = "like new"
     
+    
 my_car = ElectricCar("DeLorean", "silver", 88, "molten salt")
 
 #print my_car.display_car()
