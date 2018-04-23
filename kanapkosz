@@ -1,0 +1,40 @@
+# Implementation of sandwich making automata - kanapkosz
+# Author: Piotr Hałaburdzin
+# Date: 2018-04-23
+
+kanapkosz = {'oczekiwanie': {'start': 'platnosc'},
+             'platnosc': {'zaplacono': 'wybieranie'},
+             'wybieranie': {'wybrano': 'wydawanie'},
+             'wydawanie': {'wydano': 'oczekiwanie'}}
+
+all_states = []
+
+actual_state = 'oczekiwanie'
+
+
+def transition(automata, initial, event):
+    print("in state %s using event %s" % (initial, event))
+    new_state = automata[initial][event]
+    print("new state: %s" % new_state)
+    print("available events: %s" % automata[new_state])
+    print()
+    return new_state
+
+
+def get_states(automata):
+    states = []
+    for key in automata:
+        states.append(key)
+    return states
+
+
+def get_event(automata, state):
+    user_in = input("choose event: ")
+    return user_in
+
+
+print(kanapkosz[actual_state].keys())
+kanapkosz_states = get_states(kanapkosz)
+get_event(kanapkosz, actual_state)
+actual_state = transition(kanapkosz, actual_state, 'start')
+actual_state = transition(kanapkosz, actual_state, 'zaplacono')
