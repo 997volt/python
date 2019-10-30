@@ -12,7 +12,7 @@ def show_summary():
 
 
 def get_user_input():
-    user_input = input ("Write number to convert: ")
+    user_input = input ("Write number to convert (or 'e' to exit): ")
     
 
     #exit program with 'e' passed from user
@@ -32,19 +32,18 @@ def get_user_input():
            
     return number
 
-#TODO: fix this function
+# converts a decimal (integer) input to binary (string)
 def convert_to_bin(decimal):
+    print("Your decimal number to convert is: ", decimal)
     binary = ""
-    
-    for i in range(10):
-        decimal = decimal / 2   
-        
-        if(decimal.is_integer()):
-            binary = "1" + binary
-        else:
+
+    while(decimal > 0):        
+        if(decimal % 2 == 0):
             binary = "0" + binary
-            decimal = int(decimal)
-        print(decimal)
+            decimal = decimal/2            
+        else:
+            binary = "1" + binary  
+            decimal = (decimal - 1)/2
 
     print("Your number converted to binary is:", binary)
     return binary
@@ -52,13 +51,15 @@ def convert_to_bin(decimal):
 
 def main():
     show_summary()
-    user_input = get_user_input()
     
-    #exit program with 'e' passed from user 
-    if(user_input == "e"):
-        return 1
-    
-    convert_to_bin(user_input)
+    while(True):
+        user_input = get_user_input()
+        
+        #exit program with 'e' passed from user 
+        if(user_input == "e"):
+            return 1
+        
+        convert_to_bin(user_input)
     
     return 0
     
